@@ -8,20 +8,19 @@
         <div>
 
           <Field
-            id="first_name"
-            label-name="First name"
-            v-slot="slotProps"
+              id="first_name"
+              label-name="First Name"
+              v-slot="slotProps"
           >
-
             <Input
-                v-bind="slotProps"
-                v-model="form.firstName"
+                v-if="form.firstName !== null"
+                :id="slotProps.id"
                 :validated="validated.firstName"
-                required
+                v-model="form.firstName"
                 type="text"
-                placeholder="My First Name"
+                placeholder="John"
+                required
             />
-
           </Field>
 
         </div>
@@ -30,39 +29,18 @@
 
           <Field
               id="email"
-              label-name="Email"
+              label-name="My Email"
               v-slot="slotProps"
           >
-
             <Input
-                v-bind="slotProps"
-                v-model="form.email"
+                v-if="form.email !== null"
+                :id="slotProps.id"
                 :validated="validated.email"
+                v-model="form.email"
+                type="email"
+                placeholder="email@test.com"
                 required
-                type="text"
-                placeholder="My First Name"
             />
-
-          </Field>
-
-        </div>
-
-        <div>
-
-          <Field
-              id="password"
-              label-name="Password"
-              v-slot="slotProps"
-          >
-
-            <Input
-                v-bind="slotProps"
-                v-model="form.password"
-                :validated="validated.password"
-                required
-                type="password"
-            />
-
           </Field>
 
         </div>
@@ -71,24 +49,28 @@
 
           <Field
               id="description"
-              label-name="Description"
+              label-name="My Description"
               v-slot="slotProps"
           >
-
             <TextArea
-                v-bind="slotProps"
-                v-model="form.description"
+                v-if="form.description !== null"
+                :id="slotProps.id"
                 :validated="validated.description"
+                v-model="form.description"
                 required
             />
-
           </Field>
 
         </div>
 
       </div>
 
-      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      <button
+          type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Submit
+      </button>
 
     </form>
 
@@ -106,21 +88,18 @@
   const form: Form = reactive({
     firstName: '',
     email: '',
-    password: '',
     description: '',
   });
 
   const validated: Validated = reactive({
     firstName: false,
     email: false,
-    password: false,
     description: false,
   });
 
   const submit = (): void => {
     validated.firstName = true;
     validated.email = true;
-    validated.password = true;
     validated.description = true;
 
     console.log(form);

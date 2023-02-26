@@ -6,15 +6,15 @@
   </Label>
 
   <slot
-      v-bind="props"
+    v-bind="props"
   />
 </template>
 
 <script setup lang="ts">
-import Label from "@/components/Label.vue";
+  import Label from "@/components/Label.vue";
 
-const props = defineProps({
-  id: String,
-  labelName: String,
-});
+  const props = defineProps({
+    id: String,
+    labelName: String,
+  });
 </script>
